@@ -1,5 +1,12 @@
 # Bitcoin Mining Simulator
 
+[mertokuyaz.github.io](mertokuyaz.github.io)
+
+Header Note:
+
+This project was already shared at https://github.com/mertokuyaz/mertokuyaz.github.io/, but I wanted to create this repository for SEO purposes so that people can find it more easily.
+
+
 An interactive, browser-based tool designed to visually and interactively explain the fundamental concept of Bitcoin mining and Proof-of-Work. This simulator allows users to see the "guess and check" process of finding a valid hash in real-time, right in their browser.
 
 This project was created and conceptualized by [Mert Okuyaz](https://x.com/mertokuyazz).
