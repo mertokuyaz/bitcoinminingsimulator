@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; worker-src 'self'; img-src 'self' data:; media-src 'self' data:;">
     <title>Bitcoin Mining Simulator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,8 +54,12 @@
         <div class="card controls-card">
             <h2>Controls</h2>
             <div class="form-group">
-                <label for="block-data">Block Data to be Mined</label>
-                <textarea id="block-data" rows="5">Previous Hash: 0000000000000000000b9d3c5c3d2b8e2a3f8f1d8b7c6c5e4d3a2b1a0c9d
+                <label for="threads">Mining Threads (Web Workers)</label>
+                <input type="number" id="threads" min="1" max="16" value="1" />
+            </div>
+            <div class="form-group">
+                <label for="block-data">Block Data to be Mined (Max 2000 chars)</label>
+                <textarea id="block-data" rows="5" maxlength="2000">Previous Hash: 0000000000000000000b9d3c5c3d2b8e2a3f8f1d8b7c6c5e4d3a2b1a0c9d
 Merkle Root: 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
 Timestamp: 1678912345</textarea>
             </div>
@@ -92,7 +97,7 @@ Timestamp: 1678912345</textarea>
             </div>
             
             <div id="results-container" class="hidden">
-                <pre id="status-log">Awaiting start...</pre>
+                <div id="status-log" class="status-log">Awaiting start...</div>
             </div>
             
             <div id="success-block" class="hidden">
@@ -109,6 +114,14 @@ Timestamp: 1678912345</textarea>
         </div>
     </main>
     
+    <!-- NEW: Mini-Blockchain Visualizer -->
+    <div id="blockchain-container" class="blockchain-layout hidden">
+        <h2>Mined Blocks (Mini-Blockchain)</h2>
+        <div id="blocks-wrapper" class="blocks-wrapper"></div>
+    </div>
+    
+    <canvas id="confetti-canvas"></canvas>
+
     <!-- ***** EXPLANATION CONTENT RESTORED ***** -->
         <div class="card explanation-card">
             <h2>What is SHA-256?</h2>
